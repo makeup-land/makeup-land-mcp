@@ -1,0 +1,86 @@
+# Smithery MCP registry config.
+# Spec: https://smithery.ai/docs/build/getting-started
+#
+# This is an HTTP-transport MCP server; Smithery hosts the metadata,
+# proxies clients to our endpoint. Submit via `npx @smithery/cli publish`
+# from this repo root, or attach to the Smithery dashboard via the
+# "Connect from GitHub" flow.
+
+startCommand:
+  type: http
+  url: https://makeup.land/api/mcp
+
+name: makeup-land
+displayName: makeup.land
+description: |
+  MCP server for makeup.land — an Israeli professional cosmetics retailer.
+  Search the catalog with ΔE-ranked shade matching, look up customer
+  wallets (ℳ-credits + M Club tiers), fetch carts and orders, and
+  validate gift cards. Catalog tools work anonymously; customer-data
+  tools require a bearer token (request via shop@makeup.land).
+
+homepage: https://makeup.land
+documentation: https://makeup.land/llms-full.txt
+mcpManifest: https://makeup.land/.well-known/mcp.json
+agentCard: https://makeup.land/.well-known/agent-card.json
+
+categories:
+  - ecommerce
+  - search
+  - cosmetics
+  - retail
+
+tags:
+  - ecommerce
+  - cosmetics
+  - makeup
+  - shade-matching
+  - delta-e
+  - hebrew
+  - israel
+  - loyalty-wallet
+
+# Auth model — Smithery surfaces this to users so they know what to
+# configure. Catalog tools (list_products, validate_gift_card) work
+# without auth; the remaining six tools require a bearer token.
+auth:
+  type: bearer
+  required: false
+  description: |
+    Optional for catalog tools (list_products, validate_gift_card).
+    Required for customer-data tools (list_brands, get_customer,
+    get_cart, list_orders, list_payment_links, get_customer_best_deals).
+    Request a token via shop@makeup.land.
+
+tools:
+  - name: list_products
+    description: Browse / search catalog with ΔE shade matching
+    requiresAuth: false
+  - name: list_brands
+    description: List all brands with product counts
+    requiresAuth: true
+  - name: validate_gift_card
+    description: Check a gift card balance by code (public)
+    requiresAuth: false
+  - name: get_customer
+    description: Customer profile, wallet balance, M Club tier
+    requiresAuth: true
+  - name: get_cart
+    description: Most-recent cart with reward projection
+    requiresAuth: true
+  - name: list_orders
+    description: Recent orders with 6-axis status
+    requiresAuth: true
+  - name: list_payment_links
+    description: Pending payment requests on unpaid orders
+    requiresAuth: true
+  - name: get_customer_best_deals
+    description: Personalised deals based on tags + tier
+    requiresAuth: true
+
+maintainer:
+  name: makeup.land
+  email: shop@makeup.land
+  url: https://makeup.land
+
+license: proprietary
