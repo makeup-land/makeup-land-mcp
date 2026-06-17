@@ -1,0 +1,10 @@
+{
+  "$schema": "https://glama.ai/mcp/schemas/server.json",
+  "maintainers": [
+    {
+      "name": "makeup.land",
+      "email": "shop@makeup.land",
+      "url": "https://makeup.land"
+    }
+  ]
+}
