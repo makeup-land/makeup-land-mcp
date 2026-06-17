@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "land.makeup/v1",
+  "title": "makeup.land",
+  "description": "Israeli cosmetics retailer: ΔE shade matching, customer wallet, cart, orders, gift cards.",
+  "websiteUrl": "https://makeup.land",
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://makeup.land/api/mcp"
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "tool": "mcp-publisher",
+      "version": "1.7.9",
+      "tags": ["ecommerce", "cosmetics", "makeup", "shade-matching", "delta-e", "hebrew", "israel", "loyalty-wallet", "retail"],
+      "discovery": {
+        "mcp_manifest": "https://makeup.land/.well-known/mcp.json",
+        "agent_card": "https://makeup.land/.well-known/agent-card.json",
+        "openapi": "https://makeup.land/openapi.json",
+        "handbook": "https://makeup.land/llms-full.txt"
+      },
+      "auth_request": "mailto:shop@makeup.land"
+    }
+  }
+}
